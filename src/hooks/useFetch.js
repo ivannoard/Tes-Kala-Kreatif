@@ -1,39 +1,20 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 
-const useFetch = (requestServiceAPI, requestEndpoint) => {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
-  const [success, setSuccess] = useState();
-
-  const getData = async (serviceAPI, endpoint, config) => {
-    try {
-      const response = await serviceAPI.get(`/${endpoint}`, config);
-      // console.log(response);
-      if (response) {
-        const data = await response;
-        setData(data);
-        setIsLoading(false);
-        setSuccess(data);
-      } else {
-        const data = await response;
-        setIsLoading(false);
-        setError(data);
-      }
-    } catch (e) {
-      setIsLoading(false);
-      setError(e);
-    }
+const useFetch = (requestServiceAPI, requestEndpoint, requestId) => {
+  const requestConfig = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
-  useEffect(() => {
-    const requestConfig = {
-      headers: {
-        "content-type": "application/json",
-      },
-    };
-    if (requestEndpoint)
-      getData(requestServiceAPI, requestEndpoint, requestConfig);
-  }, [requestEndpoint, requestServiceAPI]);
-  return { data, isLoading, error, success };
+
+  const getData = async (serviceAPI, endpoint, config, id = "") => {
+    const response = await serviceAPI.get(`/${endpoint}/${id}`, config);
+    return response;
+  };
+
+  const { isLoading, error, data } = useQuery("getData", () =>
+    getData(requestServiceAPI, requestEndpoint, requestConfig, requestId)
+  );
+  return { isLoading, error, data };
 };
 export default useFetch;
