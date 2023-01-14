@@ -14,6 +14,7 @@ const Register = () => {
   }
   function handleRegister(e) {
     e.preventDefault();
+    navigate("/auth/login");
   }
   return (
     <>

@@ -1,7 +1,13 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .containers {
-  @apply max-w-[1879px] mx-auto bg-red-500;
+  @apply max-w-[1879px] mx-auto;
+}
+.nav-menu.active {
+  @apply border-b-2 border-secondary text-slate-800;
 }
