@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { WithFrame, WithoutFrame } from "../components/template";
-import { Home, Login, Register } from "../pages";
+import { AboutUs, Blog, Cart, Home, Login, Product, Register } from "../pages";
 
 const Router = () => {
   return (
@@ -13,6 +13,10 @@ const Router = () => {
         </Route>
         <Route element={<WithFrame />}>
           <Route path="/" element={<Home />} />
+          <Route path="/produks" element={<Product />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/tentang-kami" element={<AboutUs />} />
+          <Route path="/keranjang" element={<Cart />} />
         </Route>
       </Routes>
     </BrowserRouter>

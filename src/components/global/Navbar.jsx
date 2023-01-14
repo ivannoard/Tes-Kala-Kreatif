@@ -41,7 +41,12 @@ const Navbar = () => {
               >
                 <p>Tentang Kami</p>
               </NavLink>
-              <HiOutlineShoppingCart size={22} stroke="#64748B" />
+              <HiOutlineShoppingCart
+                size={22}
+                stroke="#64748B"
+                className="cursor-pointer"
+                onClick={() => navigate("/keranjang")}
+              />
               <button
                 onClick={() => navigate("/auth/login")}
                 className="bg-secondary px-5 py-2 text-white font-semibold rounded-[10px]"
