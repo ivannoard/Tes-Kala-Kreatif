@@ -11,6 +11,3 @@
 .nav-menu.active {
   @apply border-b-2 border-secondary text-slate-800;
 }
-.slick-slide {
-  @apply p-2 md:p-5;
-}
