@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,11 +14,11 @@ const Navbar = () => {
                 Kala
                 <span className="text-secondary font-semibold">kreatif.</span>
               </h1>
-              <input
+              {/* <input
                 type="text"
                 className="w-2/4 block border rounded-[6px] text-sm py-1 px-4 outline-none focus:border-secondary"
                 placeholder="Cari barang . . . "
-              />
+              /> */}
             </div>
           </div>
           <div className="col-span-6 ml-auto">
@@ -40,6 +41,7 @@ const Navbar = () => {
               >
                 <p>Tentang Kami</p>
               </NavLink>
+              <HiOutlineShoppingCart size={22} stroke="#64748B" />
               <button
                 onClick={() => navigate("/auth/login")}
                 className="bg-secondary px-5 py-2 text-white font-semibold rounded-[10px]"
