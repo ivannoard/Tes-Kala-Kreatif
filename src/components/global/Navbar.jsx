@@ -1,13 +1,15 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { BiMenu } from "react-icons/bi";
+import { Menu } from "@headlessui/react";
 
 const Navbar = () => {
   const navigate = useNavigate();
   return (
     <>
       <div className="max-w-[1879px] mx-auto fixed right-0 left-0 top-0 py-3 border-b z-10 bg-white">
-        <div className="containers px-10 grid grid-cols-12 items-center">
+        <div className="containers px-3 md:px-10 grid grid-cols-12 items-center">
           <div className="col-span-6">
             <div className="logo flex items-center gap-5">
               <h1 className="text-primary font-semibold text-xl">
@@ -21,7 +23,7 @@ const Navbar = () => {
               /> */}
             </div>
           </div>
-          <div className="col-span-6 ml-auto">
+          <div className="hidden col-span-0 md:block md:col-span-6 ml-auto">
             <div className="flex gap-5 items-center">
               <NavLink className="px-3 py-1 text-slate-500 nav-menu" to="/">
                 <p>Beranda</p>
@@ -54,6 +56,32 @@ const Navbar = () => {
                 Masuk
               </button>
             </div>
+          </div>
+          <div className="col-span-6 ml-auto md:hidden">
+            <Menu as="div" className="relative">
+              <Menu.Button>
+                <BiMenu size={20} fill="#64748B" />
+              </Menu.Button>
+              <Menu.Items
+                as="div"
+                className="absolute bg-white w-[200px] top-10 right-0 px-4 py-2 flex flex-col gap-5"
+              >
+                <Menu.Item as="div" className="text-sm text-slate-500">
+                  Beranda
+                </Menu.Item>
+                <Menu.Item as="div" className="text-sm text-slate-500">
+                  Produk
+                </Menu.Item>
+                <Menu.Item as="div" className="text-sm text-slate-500">
+                  Blog
+                </Menu.Item>
+                <Menu.Item as="div" className="text-sm text-slate-500">
+                  <button className="bg-secondary text-white w-full py-1 text-sm">
+                    Masuk
+                  </button>
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
           </div>
         </div>
       </div>
