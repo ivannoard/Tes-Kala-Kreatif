@@ -1,7 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { WithFrame, WithoutFrame } from "../components/template";
-import { AboutUs, Blog, Cart, Home, Login, Product, Register } from "../pages";
+import {
+  AboutUs,
+  Blog,
+  Cart,
+  Home,
+  Login,
+  Product,
+  ProductDetail,
+  Register,
+} from "../pages";
 
 const Router = () => {
   return (
@@ -14,6 +23,7 @@ const Router = () => {
         <Route element={<WithFrame />}>
           <Route path="/" element={<Home />} />
           <Route path="/produks" element={<Product />} />
+          <Route path="/produk/:productId" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/tentang-kami" element={<AboutUs />} />
           <Route path="/keranjang" element={<Cart />} />
