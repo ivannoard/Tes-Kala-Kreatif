@@ -15,7 +15,18 @@ const Blog = () => {
                   onClick={() => navigate(`/blog/${item}`)}
                 >
                   <div className="bg-slate-500 w-full h-[200px]"></div>
-                  <div className="p-3">asd</div>
+                  <div className="p-3">
+                    <h5 className="text-slate-500 font-semibold">
+                      Lorem ipsum dolor sit amet.
+                    </h5>
+                    <p className="text-slate-400 text-sm">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Natus ducimus veniam libero reprehenderit tenetur aliquid
+                      in veritatis ab voluptates exercitationem! Doloribus
+                      temporibus voluptates accusamus ipsa ea molestias culpa
+                      vero laborum.
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

@@ -20,7 +20,7 @@ const Jumbotron = () => {
               <h1 className="font-semibold text-white text-2xl mt-40">
                 Temukan barang kesukaan anda di KalaKreatif
               </h1>
-              <button className="text-white bg-secondary mt-5 rounded-[10px] px-5 py-2 block mx-auto">
+              <button className="text-white bg-secondary mt-5 px-5 py-2 block mx-auto">
                 Lihat selengkapnya
               </button>
             </div>
@@ -40,7 +40,7 @@ const Jumbotron = () => {
                   Kami menyediakan postingan <br /> untuk mempermudah anda dalam
                   memilih barang.
                 </h1>
-                <button className="text-white bg-secondary mt-5 rounded-[10px] px-5 py-2">
+                <button className="text-white bg-secondary mt-5 px-5 py-2">
                   Lihat selengkapnya
                 </button>
               </div>

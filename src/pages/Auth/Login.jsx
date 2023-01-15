@@ -56,7 +56,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="bg-secondary text-white font-semibold rounded-[10px] py-2 px-5 w-full mt-4 text-sm"
+              className="bg-secondary text-white font-semibold py-2 px-5 w-full mt-4 text-sm"
             >
               Masuk
             </button>

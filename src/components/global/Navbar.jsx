@@ -49,7 +49,7 @@ const Navbar = () => {
               />
               <button
                 onClick={() => navigate("/auth/login")}
-                className="bg-secondary px-5 py-2 text-white font-semibold rounded-[10px]"
+                className="bg-secondary px-5 py-2 text-white font-semibold"
               >
                 Masuk
               </button>
