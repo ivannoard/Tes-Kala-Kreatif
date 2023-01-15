@@ -5,9 +5,9 @@ const Products = () => {
   return (
     <>
       <section className="products mt-10">
-        <div className="grid grid-cols-12 gap-8 px-10">
+        <div className="grid grid-cols-12 gap-3 md:gap-8 px-3 md:px-10">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-            <div className="col-span-3">
+            <div className="col-span-12 md:col-span-3">
               <Card id={item} />
             </div>
           ))}

@@ -7,14 +7,14 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <div className="w-full bg-sky-800 h-[350px] px-10 py-10 mt-16 grid grid-cols-9">
-          <div className="col-span-3">
+        <div className="w-full bg-sky-800 px-3 md:px-10 py-10 mt-16 grid grid-cols-9 gap-5">
+          <div className="col-span-12 md:col-span-3">
             <h5 className="font-semibold text-white text-2xl">KalaKreatif.</h5>
             <p className="text-white text-2xl mt-3">
               Solusi UMKMGOONLINE dengan menjangkau pasar digital.
             </p>
           </div>
-          <div className="col-span-3 mx-auto">
+          <div className="col-span-12 md:col-span-3 md:mx-auto">
             <h1 className="font-semibold text-white text-lg">Navigasi</h1>
             <div className="navigate-menu flex flex-col gap-3 mt-2 text-sm text-white">
               <p className="cursor-pointer" onClick={() => navigate("/")}>
@@ -28,7 +28,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="col-span-3 mx-auto text-white">
+          <div className="col-span-12 md:col-span-3 mx-auto text-white">
             <h1 className="font-semibold text-lg">Kontak Kami</h1>
             <p>
               Dusun Ngemplak Rt 4 Rw 8 No.39, Nganti, Sendangadi, Kec. Mlati,
