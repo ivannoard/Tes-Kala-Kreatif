@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Card } from "../../components/global";
 
 const Product = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -39,13 +40,7 @@ const Product = () => {
           <div className="col-span-10 bg-blue-500 grid grid-cols-12 gap-5">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
               <div key={item} className="col-span-3">
-                <div
-                  className="bg-white border cursor-pointer"
-                  onClick={() => navigate(`/produk/${item}`)}
-                >
-                  <div className="bg-slate-500 w-full h-[200px]"></div>
-                  <div className="p-3">asd</div>
-                </div>
+                <Card id={item} />
               </div>
             ))}
           </div>
