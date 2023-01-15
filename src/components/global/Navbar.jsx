@@ -35,12 +35,12 @@ const Navbar = () => {
               <NavLink className="px-3 py-1 text-slate-500 nav-menu" to="/blog">
                 <p>Blog</p>
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 className="px-3 py-1 text-slate-500 nav-menu"
                 to="/tentang-kami"
               >
                 <p>Tentang Kami</p>
-              </NavLink>
+              </NavLink> */}
               <HiOutlineShoppingCart
                 size={22}
                 stroke="#64748B"

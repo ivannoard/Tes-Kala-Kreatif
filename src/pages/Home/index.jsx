@@ -1,11 +1,10 @@
 import React from "react";
-import Slider from "react-slick";
 import {
   Footer,
   Jumbotron,
-  Products,
-  ProductPost,
   Posts,
+  ProductPost,
+  Products,
 } from "../../components/molecules/Home";
 
 const Home = () => {
