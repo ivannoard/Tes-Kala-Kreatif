@@ -66,14 +66,29 @@ const Navbar = () => {
                 as="div"
                 className="absolute bg-white w-[200px] top-10 right-0 px-4 py-2 flex flex-col gap-5"
               >
-                <Menu.Item as="div" className="text-sm text-slate-500">
-                  Beranda
+                <Menu.Item
+                  as="div"
+                  className="text-sm text-slate-500 cursor-pointer"
+                >
+                  <p onClick={() => navigate("/")}>Beranda</p>
                 </Menu.Item>
-                <Menu.Item as="div" className="text-sm text-slate-500">
-                  Produk
+                <Menu.Item
+                  as="div"
+                  className="text-sm text-slate-500 cursor-pointer"
+                >
+                  <p onClick={() => navigate("/produk")}>Produk</p>
                 </Menu.Item>
-                <Menu.Item as="div" className="text-sm text-slate-500">
-                  Blog
+                <Menu.Item
+                  as="div"
+                  className="text-sm text-slate-500 cursor-pointer"
+                >
+                  <p onClick={() => navigate("/blog")}>Blog</p>
+                </Menu.Item>
+                <Menu.Item
+                  as="div"
+                  className="text-sm text-slate-500 cursor-pointer"
+                >
+                  <p onClick={() => navigate("/keranjang")}>Keranjang</p>
                 </Menu.Item>
                 <Menu.Item as="div" className="text-sm text-slate-500">
                   <button className="bg-secondary text-white w-full py-1 text-sm">

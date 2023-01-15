@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="w-full bg-sky-800 px-3 md:px-10 py-10 mt-16 grid grid-cols-9 gap-5">
           <div className="col-span-12 md:col-span-3">
             <h5 className="font-semibold text-white text-2xl">KalaKreatif.</h5>
-            <p className="text-white text-2xl mt-3">
+            <p className="text-white md:text-2xl mt-3">
               Solusi UMKMGOONLINE dengan menjangkau pasar digital.
             </p>
           </div>
