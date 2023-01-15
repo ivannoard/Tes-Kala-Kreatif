@@ -4,6 +4,7 @@ import { WithFrame, WithoutFrame } from "../components/template";
 import {
   AboutUs,
   Blog,
+  BlogDetail,
   Cart,
   Home,
   Login,
@@ -22,9 +23,10 @@ const Router = () => {
         </Route>
         <Route element={<WithFrame />}>
           <Route path="/" element={<Home />} />
-          <Route path="/produks" element={<Product />} />
+          <Route path="/produk" element={<Product />} />
           <Route path="/produk/:productId" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:blogId" element={<BlogDetail />} />
           <Route path="/tentang-kami" element={<AboutUs />} />
           <Route path="/keranjang" element={<Cart />} />
         </Route>

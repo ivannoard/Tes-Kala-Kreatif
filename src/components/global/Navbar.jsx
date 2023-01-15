@@ -28,7 +28,7 @@ const Navbar = () => {
               </NavLink>
               <NavLink
                 className="px-3 py-1 text-slate-500 nav-menu"
-                to="/produks"
+                to="/produk"
               >
                 <p>Produk</p>
               </NavLink>
