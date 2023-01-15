@@ -1,27 +1,5 @@
 import React from "react";
-import Slider from "react-slick";
-
 const index = () => {
-  const settings = {
-    customPaging: function (i) {
-      return (
-        <a href>
-          <img
-            src={`https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract0${
-              i + 1
-            }.jpg`}
-            alt=""
-          />
-        </a>
-      );
-    },
-    dots: true,
-    dotsClass: "slick-dots slick-thumb",
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   return (
     <>
       <main>
