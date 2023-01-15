@@ -10,7 +10,7 @@ import {
 
 const Home = () => {
   return (
-    <div className="App">
+    <main>
       <div className="containers">
         <Jumbotron />
         <ProductPost />
@@ -18,7 +18,7 @@ const Home = () => {
         <Posts />
         <Footer />
       </div>
-    </div>
+    </main>
   );
 };
 
