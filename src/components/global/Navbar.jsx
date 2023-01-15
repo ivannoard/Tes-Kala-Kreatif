@@ -6,8 +6,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="w-full mx-auto fixed top-0 p-3 border-b z-10 bg-white">
-        <div className="containers grid grid-cols-12 items-center">
+      <div className="max-w-[1879px] mx-auto fixed right-0 left-0 top-0 py-3 border-b z-10 bg-white">
+        <div className="containers px-10 grid grid-cols-12 items-center">
           <div className="col-span-6">
             <div className="logo flex items-center gap-5">
               <h1 className="text-primary font-semibold text-xl">

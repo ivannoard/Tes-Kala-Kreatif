@@ -6,7 +6,7 @@ const Blog = () => {
   return (
     <>
       <main>
-        <div className="containers p-3">
+        <div className="containers py-3 px-10">
           <div className="grid grid-cols-12 gap-5">
             {[1, 2, 3, 4, 5].map((item) => (
               <div className="col-span-3">
