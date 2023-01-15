@@ -1,13 +1,6 @@
 import React from "react";
-import Slider from "react-slick";
+
 const Posts = () => {
-  const settings2 = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-  };
   return (
     <>
       <section className="mt-10 overflow-x-hidden px-10">

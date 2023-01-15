@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/global";
 
 const Product = () => {
   const [scrollY, setScrollY] = useState(0);
-  const navigate = useNavigate();
   useEffect(() => {
     const onScroll = () => setScrollY(window.pageYOffset);
     // clean up code
