@@ -7,6 +7,9 @@ module.exports = {
         primary: "#5cf7f0",
         secondary: "#5cddf7",
       },
+      fontFamily: {
+        courgette: ["Courgette", "serif"],
+      },
     },
   },
   plugins: [],
