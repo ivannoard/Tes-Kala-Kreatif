@@ -1,44 +1,130 @@
-import React from "react";
-const index = () => {
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+const ProductDetail = () => {
+  const { productId } = useParams();
+  const user = localStorage.getItem("user");
+  const [data, setData] = useState();
+  const [dataComments, setDataComments] = useState();
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [isLoadingComments, setIsLoadingComments] = useState(true);
+  const [alertSuccess, setAlertSuccess] = useState();
+  const [alertSuccessMessage, setAlertSuccessMessage] = useState();
+  const [alertFail, setAlertFail] = useState();
+  const [alertFailMessage, setAlertFailMessage] = useState();
+
+  async function getProductDetail(id) {
+    await axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
+      // setIsLoading(false);
+      setData(response.data);
+    });
+  }
+  async function getProductComments(id) {
+    await axios
+      .get(`https://dummyjson.com/comments/post/${id}`)
+      .then((response) => {
+        // setIsLoadingComments(false);
+        setDataComments(response.data);
+      });
+  }
+  function handleCart(e) {
+    e.preventDefault();
+    if (!user) {
+      setAlertFail(true);
+      setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
+    }
+    setAlertSuccess(true);
+    setAlertSuccessMessage("Sukses menambahkan produk ke keranjang");
+  }
+  function handleBuy(e) {
+    e.preventDefault();
+    if (!user) {
+      setAlertFail(true);
+      setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
+    }
+    setAlertSuccess(true);
+    setAlertSuccessMessage("Terimakasih sudah membeli");
+  }
+  useEffect(() => {
+    getProductDetail(productId);
+    getProductComments(productId);
+  }, [productId]);
+  useEffect(() => {
+    setTimeout(() => {
+      if (alertSuccess || alertFail === true)
+        setAlertFail(false) || setAlertSuccess(false);
+    }, 2000);
+  }, [alertFail, alertSuccess]);
+  console.log(dataComments);
   return (
     <>
       <main>
+        {alertSuccess && (
+          <div>
+            <div className="absolute max-w-2xl top-20 right-0 left-0 mx-auto">
+              <div className="bg-green-400 p-3 text-center text-white font-semibold">
+                {alertSuccessMessage}
+              </div>
+            </div>
+          </div>
+        )}
+        {alertFail && (
+          <div>
+            <div className="absolute max-w-2xl top-20 right-0 left-0 mx-auto">
+              <div className="bg-red-400 p-3 text-center text-white font-semibold">
+                {alertFailMessage}
+              </div>
+            </div>
+          </div>
+        )}
         <div className="containers py-3 px-3 md:px-10">
           <div className="grid grid-cols-12 border">
             <div className="col-span-4">
-              <div className="bg-slate-500 w-full h-[300px]"></div>
+              <img src={data?.thumbnail} alt="" />
             </div>
             <div className="col-span-8 px-10 py-3 flex flex-col justify-between">
               <div className="product">
                 <div className="title pb-2 border-b border-slate-500">
                   <h5 className="text-slate-500 font-semibold text-2xl">
-                    Lorem ipsum dolor sit amet.
+                    {data?.title}
                   </h5>
                   <h3 className="text-slate font-semibold text-xl mt-2">
-                    Rp. 100.000
+                    {data?.price} USD
                   </h3>
                 </div>
-                <p className="mt-2">Deskripsi</p>
-                <p className="mt-1">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa
-                  illo nostrum quas ex deserunt? Dicta accusantium excepturi
-                  quos voluptates quo eveniet quasi maiores consectetur.
-                  Deleniti nemo reprehenderit perferendis architecto
-                  perspiciatis!
-                </p>
+                <p className="mt-2 text-slate-500 font-semibold">Deskripsi</p>
+                <p className="mt-1">{data?.description}</p>
               </div>
               <div className="buttons ml-auto flex gap-2">
-                <button className="bg-white text-slate-400 font-semibold py-2 px-5 border-2 border-sky-200">
+                <button
+                  onClick={(e) => handleCart(e)}
+                  className="bg-white text-slate-400 font-semibold py-2 px-5 border-2 border-sky-200"
+                >
                   Keranjang
                 </button>
-                <button className="bg-secondary text-white font-semibold py-2 px-5">
+                <button
+                  onClick={(e) => handleBuy(e)}
+                  className="bg-secondary text-white font-semibold py-2 px-5"
+                >
                   Beli Sekarang
                 </button>
               </div>
             </div>
           </div>
           <div className="bg-white mt-3 p-3 border">
-            <h4 className="text-slate-500 font-semibold  text-lg">Komentar</h4>
+            <h4 className="text-slate-500 font-semibold  text-lg mb-2">
+              Komentar
+            </h4>
+            <div className="flex flex-col gap-3">
+              {dataComments?.comments.map((item) => (
+                <div className="card bg-white border p-3">
+                  <h4 className="font-semibold text-lg text-slate-500">
+                    {item.user.username}
+                  </h4>
+                  <p className="text-slate-600">{item.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
@@ -46,4 +132,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default ProductDetail;

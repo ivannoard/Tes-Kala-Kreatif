@@ -1,20 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ id }) => {
+const Card = ({ data }) => {
   const navigate = useNavigate();
   return (
     <div
       className="bg-white border cursor-pointer"
-      onClick={() => navigate(`/produk/${id}`)}
+      onClick={() => navigate(`/produk/${data.id}`)}
     >
-      <div className="bg-slate-500 w-full h-[200px]"></div>
+      <img src={data.thumbnail} alt="" className="h-[200px] w-full bg-cover" />
       <div className="p-3">
         <h5 className="text-sm md:text-lg text-slate-500 font-semibold">
-          Lorem ipsum dolor sit amet.
+          {data.title}
         </h5>
-        <h6 className="text-slate-500 text-sm md:text-lg mt-1">Rp. 100.000</h6>
-        <p className="text-slate-400 text-sm mt-1">Terjual 100 barang</p>
+        <p className="text-sm text-slate-500">{data.brand}</p>
+        <p className="text-sm text-slate-500">{data.category}</p>
+        <h6 className="text-slate-500 text-sm md:text-lg mt-1">
+          {data.price} USD
+        </h6>
+        <p className="text-slate-400 text-sm mt-1">
+          Tersisa {data.stock} barang
+        </p>
       </div>
     </div>
   );
