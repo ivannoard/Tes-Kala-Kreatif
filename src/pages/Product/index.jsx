@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
-import { Card } from "../../components/global";
+import { Card, CardSkeleton, TextSkeleton } from "../../components/global";
 
 const Product = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -75,22 +75,30 @@ const Product = () => {
               </h1>
               <div className="flex flex-col gap-2 overflow-scroll h-[250px] mt-2">
                 <p
-                  className="text-slate-500 cursor-pointer"
+                  className={`text-slate-500 cursor-pointer ${
+                    isLoadingCategories ? "hidden" : "block"
+                  }`}
                   onClick={() => setProductByCategory()}
                 >
                   Semua Produk
                 </p>
-                {isLoadingCategories
-                  ? "loading"
-                  : categories?.map((item, index) => (
-                      <p
-                        onClick={() => setProductByCategory(item)}
-                        key={index}
-                        className="text-slate-500 cursor-pointer"
-                      >
-                        {item}
-                      </p>
+                {isLoadingCategories ? (
+                  <div className="flex flex-col gap-3">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                      <TextSkeleton />
                     ))}
+                  </div>
+                ) : (
+                  categories?.map((item, index) => (
+                    <p
+                      onClick={() => setProductByCategory(item)}
+                      key={index}
+                      className="text-slate-500 cursor-pointer"
+                    >
+                      {item}
+                    </p>
+                  ))
+                )}
               </div>
             </div>
           </div>
@@ -104,7 +112,11 @@ const Product = () => {
           </div>
           <div className="col-span-12 md:col-span-10 grid grid-cols-12 gap-3 md:gap-5">
             {isLoading
-              ? "loading"
+              ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                  <div key={item} className="col-span-12 md:col-span-3">
+                    <CardSkeleton />
+                  </div>
+                ))
               : uniqueDataProducts?.map((item) => (
                   <div key={item.id} className="col-span-6 md:col-span-3">
                     <Card data={item} />
