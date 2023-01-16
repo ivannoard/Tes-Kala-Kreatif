@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardSkeleton } from "../../global";
 
 const Products = ({ data, isLoading }) => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="products mt-10">
@@ -19,7 +21,10 @@ const Products = ({ data, isLoading }) => {
               ))}
         </div>
 
-        <button className="block mt-10 mx-auto py-2 px-5 bg-secondary text-white font-semibold">
+        <button
+          onClick={() => navigate("/produk")}
+          className="block mt-10 mx-auto py-2 px-5 bg-secondary text-white font-semibold"
+        >
           Lihat semua produk
         </button>
       </section>

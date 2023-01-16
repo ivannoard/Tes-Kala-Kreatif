@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const BlogDetail = () => {
-  const blogId = useParams();
+  const { blogId } = useParams();
   const [data, setData] = useState();
   async function getDetailPost(id) {
     await axios
-      .get("https://dummyjson.com/posts/1")
+      .get(`https://dummyjson.com/posts/${id}`)
       .then((response) => setData(response.data));
   }
   useEffect(() => {
