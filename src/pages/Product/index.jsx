@@ -81,7 +81,10 @@ const Product = () => {
             />
           </div>
           <div className="col-span-12 md:hidden md:col-span-0">
-            <CategoryHeader />
+            <CategoryHeader
+              setProductByCategory={setProductByCategory}
+              categories={categories}
+            />
           </div>
           <div className="col-span-12 md:col-span-10 grid grid-cols-12 gap-3 md:gap-5">
             {isLoading
