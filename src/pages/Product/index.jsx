@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BsChevronDown } from "react-icons/bs";
-import { Card, CardSkeleton, TextSkeleton } from "../../components/global";
+import { Card, CardSkeleton } from "../../components/global";
 import {
   CategoryHeader,
   CategorySidebar,
