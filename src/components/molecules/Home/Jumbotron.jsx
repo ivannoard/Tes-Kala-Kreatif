@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { Jumbotron1, Jumbotron2, Jumbotron3 } from "../../../assets/images";
 
@@ -12,6 +13,7 @@ const Jumbotron = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
   };
+  const navigate = useNavigate();
   return (
     <>
       <section className="jumbotron overflow-x-hidden">
@@ -27,7 +29,10 @@ const Jumbotron = () => {
               <h1 className="font-semibold text-white text-2xl mt-40 text-center">
                 Temukan barang kesukaan anda di KalaKreatif
               </h1>
-              <button className="text-sm md:text-md text-white bg-secondary mt-5 px-5 py-2 block mx-auto">
+              <button
+                onClick={() => navigate("/produk")}
+                className="text-sm md:text-md text-white bg-secondary mt-5 px-5 py-2 block mx-auto"
+              >
                 Lihat selengkapnya
               </button>
             </div>
@@ -60,7 +65,10 @@ const Jumbotron = () => {
                   Kami menyediakan postingan <br /> untuk mempermudah anda dalam
                   memilih barang.
                 </h1>
-                <button className="text-sm md:text-lg text-white bg-secondary mt-5 px-5 py-2">
+                <button
+                  onClick={() => navigate("/blog")}
+                  className="text-sm md:text-lg text-white bg-secondary mt-5 px-5 py-2"
+                >
                   Lihat selengkapnya
                 </button>
               </div>
