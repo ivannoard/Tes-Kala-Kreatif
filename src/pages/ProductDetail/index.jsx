@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const ProductDetail = () => {
   const { productId } = useParams();
   const user = localStorage.getItem("user");
-  const userId = JSON.parse(user).id;
+  const userId = user ? JSON.parse(user).id : null;
   const [data, setData] = useState();
   const [dataComments, setDataComments] = useState();
   // const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +33,7 @@ const ProductDetail = () => {
     if (!user) {
       setAlertFail(true);
       setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
+      return;
     }
     await axios
       .post(
@@ -72,6 +73,7 @@ const ProductDetail = () => {
     if (!user) {
       setAlertFail(true);
       setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
+      return;
     }
     setTimeout(() => {
       setAlertSuccess(true);

@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { Card, CardSkeleton, TextSkeleton } from "../../components/global";
+import {
+  CategoryHeader,
+  CategorySidebar,
+} from "../../components/molecules/Product";
 
 const Product = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -69,46 +73,15 @@ const Product = () => {
             </div>
           </div> */}
           <div className="hidden col-span-0 md:block md:col-span-2">
-            <div className={` p-3 sticky ${scrollY > 0 ? "top-[68px]" : ""}`}>
-              <h1 className="text-sm text-slate-500 font-semibold border-b-2 border-slate-500 pb-1">
-                Kategori Produk
-              </h1>
-              <div className="flex flex-col gap-2 overflow-scroll h-[250px] mt-2">
-                <p
-                  className={`text-slate-500 cursor-pointer ${
-                    isLoadingCategories ? "hidden" : "block"
-                  }`}
-                  onClick={() => setProductByCategory()}
-                >
-                  Semua Produk
-                </p>
-                {isLoadingCategories ? (
-                  <div className="flex flex-col gap-3">
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                      <TextSkeleton />
-                    ))}
-                  </div>
-                ) : (
-                  categories?.map((item, index) => (
-                    <p
-                      onClick={() => setProductByCategory(item)}
-                      key={index}
-                      className="text-slate-500 cursor-pointer"
-                    >
-                      {item}
-                    </p>
-                  ))
-                )}
-              </div>
-            </div>
+            <CategorySidebar
+              scrollY={scrollY}
+              isLoadingCategories={isLoadingCategories}
+              setProductByCategory={setProductByCategory}
+              categories={categories}
+            />
           </div>
           <div className="col-span-12 md:hidden md:col-span-0">
-            <div className="flex justify-between items-center border-b-2 border-slate-500">
-              <h1 className="text-sm text-slate-500 font-semibold pb-1">
-                Kategori Produk
-              </h1>
-              <BsChevronDown className="text-slate-500 cursor-pointer" />
-            </div>
+            <CategoryHeader />
           </div>
           <div className="col-span-12 md:col-span-10 grid grid-cols-12 gap-3 md:gap-5">
             {isLoading

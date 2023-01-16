@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BlogCard } from "../../components/molecules/Blog";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -21,20 +22,7 @@ const Blog = () => {
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-12 md:col-span-8 p-3">
               {data?.map((item) => (
-                <div
-                  className="bg-white border cursor-pointer mb-3"
-                  onClick={() => navigate(`/blog/${item.id}`)}
-                >
-                  {/* <div className="bg-slate-500 w-full h-[200px]"></div> */}
-                  <div className="p-3">
-                    <h5 className="text-slate-500 font-semibold">
-                      {item.title}
-                    </h5>
-                    <p className="text-slate-400 text-sm">
-                      {item.body.split(" ").splice(0, 20).join(" ")}
-                    </p>
-                  </div>
-                </div>
+                <BlogCard navigate={navigate} item={item} />
               ))}
             </div>
             <div className="hidden col-span-0 md:block md:col-span-4"></div>
