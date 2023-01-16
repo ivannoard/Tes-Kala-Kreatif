@@ -119,11 +119,25 @@ const Navbar = () => {
                 >
                   <p onClick={() => navigate("/keranjang")}>Keranjang</p>
                 </Menu.Item>
-                <Menu.Item as="div" className="text-sm text-slate-500">
-                  <button className="bg-secondary text-white w-full py-1 text-sm">
-                    Masuk
-                  </button>
-                </Menu.Item>
+                {!user ? (
+                  <Menu.Item as="div" className="text-sm text-slate-500">
+                    <button
+                      onClick={() => navigate("/auth/login")}
+                      className="bg-secondary text-white w-full py-1 text-sm"
+                    >
+                      Masuk
+                    </button>
+                  </Menu.Item>
+                ) : (
+                  <Menu.Item as="div" className="text-sm text-slate-500">
+                    <button
+                      onClick={(e) => handleLogout(e)}
+                      className="bg-secondary text-white w-full py-1 text-sm"
+                    >
+                      Logout
+                    </button>
+                  </Menu.Item>
+                )}
               </Menu.Items>
             </Menu>
           </div>
