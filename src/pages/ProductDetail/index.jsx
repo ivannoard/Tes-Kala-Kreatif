@@ -113,10 +113,10 @@ const ProductDetail = () => {
         )}
         <div className="containers py-3 px-3 md:px-10">
           <div className="grid grid-cols-12 border">
-            <div className="col-span-4">
+            <div className="col-span-12 md:col-span-4">
               <img src={data?.thumbnail} alt="" />
             </div>
-            <div className="col-span-8 px-10 py-3 flex flex-col justify-between">
+            <div className="col-span-12 md:col-span-8 px-3 md:px-10 py-3 flex flex-col justify-between">
               <div className="product">
                 <div className="title pb-2 border-b border-slate-500">
                   <h5 className="text-slate-500 font-semibold text-2xl">
@@ -129,7 +129,7 @@ const ProductDetail = () => {
                 <p className="mt-2 text-slate-500 font-semibold">Deskripsi</p>
                 <p className="mt-1">{data?.description}</p>
               </div>
-              <div className="buttons ml-auto flex gap-2">
+              <div className="buttons mt-4 md:mt-0 md:ml-auto flex gap-2">
                 <button
                   onClick={(e) => handleCart(e)}
                   className="bg-white text-slate-400 font-semibold py-2 px-5 border-2 border-sky-200"
