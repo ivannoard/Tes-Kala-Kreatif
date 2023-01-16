@@ -13,7 +13,6 @@ const Navbar = () => {
     localStorage.removeItem("user");
     navigate("/auth/login");
   }
-  console.log(user);
   return (
     <>
       <div className="max-w-[1879px] mx-auto fixed right-0 left-0 top-0 py-3 border-b z-10 bg-white">

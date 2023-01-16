@@ -8,7 +8,17 @@ const Product = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState();
+  const [productsByCategory, setProductByCategory] = useState();
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  console.log(productsByCategory);
+
+  async function fetchProductsByCategory(category) {
+    await axios
+      .get(`https://dummyjson.com/products/category/${category}`)
+      .then((response) => {
+        setData(response.data.products);
+      });
+  }
 
   async function fetchProducts() {
     await axios.get("https://dummyjson.com/products").then((response) => {
@@ -34,13 +44,16 @@ const Product = () => {
   }, [scrollY]);
 
   useEffect(() => {
-    fetchProducts();
+    if (productsByCategory) {
+      fetchProductsByCategory(productsByCategory);
+    } else {
+      fetchProducts();
+    }
     fetchCategories();
-  }, []);
+  }, [productsByCategory]);
   const uniqueDataProducts = [
     ...new Map(data?.map((item) => [item.title, item])).values(),
   ];
-
   return (
     <>
       <main>
@@ -61,10 +74,20 @@ const Product = () => {
                 Kategori Produk
               </h1>
               <div className="flex flex-col gap-2 overflow-scroll h-[250px] mt-2">
+                <p
+                  className="text-slate-500 cursor-pointer"
+                  onClick={() => setProductByCategory()}
+                >
+                  Semua Produk
+                </p>
                 {isLoadingCategories
                   ? "loading"
                   : categories?.map((item, index) => (
-                      <p key={index} className="text-slate-500 cursor-pointer">
+                      <p
+                        onClick={() => setProductByCategory(item)}
+                        key={index}
+                        className="text-slate-500 cursor-pointer"
+                      >
                         {item}
                       </p>
                     ))}

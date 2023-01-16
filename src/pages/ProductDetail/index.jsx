@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 const ProductDetail = () => {
   const { productId } = useParams();
   const user = localStorage.getItem("user");
+  const userId = JSON.parse(user).id;
   const [data, setData] = useState();
   const [dataComments, setDataComments] = useState();
   // const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +28,44 @@ const ProductDetail = () => {
         setDataComments(response.data);
       });
   }
-  function handleCart(e) {
+  async function handleCart(e) {
     e.preventDefault();
     if (!user) {
       setAlertFail(true);
       setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
     }
-    setAlertSuccess(true);
-    setAlertSuccessMessage("Sukses menambahkan produk ke keranjang");
+    await axios
+      .post(
+        "https://dummyjson.com/carts/add",
+        {
+          userId: userId,
+          products: [
+            {
+              id: productId,
+              quantity: 1,
+            },
+          ],
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const getDataStorage = JSON.parse(localStorage.getItem("cart"));
+        const arrCart = [];
+        if (getDataStorage) {
+          getDataStorage.push(response.data);
+          localStorage.removeItem("cart");
+          localStorage.setItem("cart", JSON.stringify(getDataStorage));
+        } else {
+          arrCart.push(response.data);
+          localStorage.setItem("cart", JSON.stringify(arrCart));
+        }
+        setAlertSuccess(true);
+        setAlertSuccessMessage("Sukses menambahkan produk ke keranjang");
+      });
   }
   function handleBuy(e) {
     e.preventDefault();
@@ -42,8 +73,10 @@ const ProductDetail = () => {
       setAlertFail(true);
       setAlertFailMessage("Ups, sepertinya anda harus login terlebih dahulu");
     }
-    setAlertSuccess(true);
-    setAlertSuccessMessage("Terimakasih sudah membeli");
+    setTimeout(() => {
+      setAlertSuccess(true);
+      setAlertSuccessMessage("Terimakasih sudah membeli");
+    }, 2000);
   }
   useEffect(() => {
     getProductDetail(productId);
@@ -55,7 +88,6 @@ const ProductDetail = () => {
         setAlertFail(false) || setAlertSuccess(false);
     }, 2000);
   }, [alertFail, alertSuccess]);
-  console.log(dataComments);
   return (
     <>
       <main>

@@ -9,7 +9,7 @@ const useFetch = (requestServiceAPI, requestEndpoint, requestId) => {
 
   const getData = async (serviceAPI, endpoint, config, id = "") => {
     const response = await serviceAPI.get(`/${endpoint}/${id}`, config);
-    return response;
+    return response.data;
   };
 
   const { isLoading, error, data } = useQuery("getData", () =>
