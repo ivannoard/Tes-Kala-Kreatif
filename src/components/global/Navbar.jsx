@@ -3,9 +3,17 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { BiMenu } from "react-icons/bi";
 import { Menu } from "@headlessui/react";
+import { BsChevronDown } from "react-icons/bs";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    navigate("/auth/login");
+  }
+  console.log(user);
   return (
     <>
       <div className="max-w-[1879px] mx-auto fixed right-0 left-0 top-0 py-3 border-b z-10 bg-white">
@@ -49,12 +57,34 @@ const Navbar = () => {
                 className="cursor-pointer"
                 onClick={() => navigate("/keranjang")}
               />
-              <button
-                onClick={() => navigate("/auth/login")}
-                className="bg-secondary px-5 py-2 text-white font-semibold"
-              >
-                Masuk
-              </button>
+              {!user ? (
+                <button
+                  onClick={() => navigate("/auth/login")}
+                  className="bg-secondary px-5 py-2 text-white font-semibold"
+                >
+                  Masuk
+                </button>
+              ) : (
+                <Menu as="div" className="relative">
+                  <Menu.Button>
+                    <div className="px-5 py-2 flex items-center gap-2 cursor-pointer text-slate-500 font-semibold">
+                      {user.username}
+                      <BsChevronDown />
+                    </div>
+                  </Menu.Button>
+                  <Menu.Items
+                    as="div"
+                    className="absolute top-12 right-0 bg-white"
+                  >
+                    <Menu.Item
+                      as="div"
+                      className="bg-white cursor-pointer w-[200px] px-5 py-2 font-semibold text-slate-500"
+                    >
+                      <p onClick={(e) => handleLogout(e)}>Logout</p>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Menu>
+              )}
             </div>
           </div>
           <div className="col-span-6 ml-auto md:hidden">

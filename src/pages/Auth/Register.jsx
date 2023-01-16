@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../components/template";
@@ -12,8 +13,20 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   }
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
+    await axios
+      .post(
+        "https://dummyjson.com/users/add",
+        {
+          username: fields.username,
+          email: fields.email,
+          phone: fields.telepon,
+          password: fields.password,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((response) => console.log(response));
     navigate("/auth/login");
   }
   return (
@@ -24,18 +37,18 @@ const Register = () => {
           <form className="mt-3" onSubmit={handleRegister}>
             <div className="form-group mt-2">
               <label
-                htmlFor="nama"
+                htmlFor="username"
                 className="text-sm font-semibold text-slate-500"
               >
-                Nama
+                Username
               </label>
               <input
                 type="text"
-                name="nama"
-                id="nama"
+                name="username"
+                id="username"
                 onChange={handleChange}
                 className="block border w-full rounded-[10px] px-3 py-1 mt-1"
-                placeholder="Masukkan nama anda"
+                placeholder="Masukkan username anda"
               />
             </div>
             <div className="form-group mt-2">
@@ -98,7 +111,7 @@ const Register = () => {
                 onClick={() => navigate("/auth/login")}
                 className="text-secondary font-semibold cursor-pointer"
               >
-                Masuk sekarang
+                Daftar sekarang
               </span>
             </p>
           </form>

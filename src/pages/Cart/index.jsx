@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const index = () => {
+const Cart = () => {
+  const [data, setData] = useState();
+
   return (
     <>
       <main className="py-3">
@@ -34,4 +36,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Cart;

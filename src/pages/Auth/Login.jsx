@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../components/template";
 
 const Login = () => {
   const [fields, setFields] = useState();
   const navigate = useNavigate();
+  const [alertFail, setAlertFail] = useState(false);
+  const [alertFailMessage, setAlertFailMessage] = useState();
   function handleChange(e) {
     e.preventDefault();
     setFields({
@@ -12,30 +15,59 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   }
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    navigate("/");
+    await axios
+      .post("https://dummyjson.com/auth/login", fields, {
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+      .then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/");
+      })
+      .catch((e) => {
+        setAlertFail(true);
+        setAlertFailMessage(
+          "Ups, user tidak terdaftar! Gunakan username & password yang tertera pada repository"
+        );
+      });
   }
+  useEffect(() => {
+    setTimeout(() => {
+      if (alertFail === true) setAlertFail(false);
+    }, 2000);
+  }, [alertFail]);
   return (
     <>
       <AuthLayout>
+        {alertFail && (
+          <div>
+            <div className="absolute max-w-2xl top-20 right-0 left-0 mx-auto">
+              <div className="bg-red-400 p-3 text-center text-white font-semibold">
+                {alertFailMessage}
+              </div>
+            </div>
+          </div>
+        )}
         <div className="auth-card bg-white rounded-[10px] shadow-md w-full md:w-3/4 px-3 py-5">
           <h1 className="font-semibold text-secondary">Selamat Datang!</h1>
           <form className="mt-3" onSubmit={handleLogin}>
             <div className="form-group mt-2">
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="text-sm font-semibold text-slate-500"
               >
-                Email
+                Username
               </label>
               <input
-                type="email"
-                name="email"
-                id="email"
+                type="text"
+                name="username"
+                id="username"
                 onChange={handleChange}
                 className="block border w-full rounded-[10px] px-3 py-1 mt-1"
-                placeholder="Masukkan email anda"
+                placeholder="Masukkan username anda"
               />
             </div>
             <div className="form-group mt-2">
